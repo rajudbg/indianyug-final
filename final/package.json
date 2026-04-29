@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "pages:build": "npx @opennextjs/cloudflare build",
+    "pages:build": "npx @opennextjs/cloudflare build && mkdir -p .open-next/assets && cp .open-next/worker.js .open-next/assets/_worker.js && cp -r public/* .open-next/assets/ 2>/dev/null || true",
     "pages:dev": "npx @opennextjs/cloudflare dev"
   },
   "dependencies": {
