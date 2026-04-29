@@ -1,0 +1,19 @@
+name = "indianyug-frontend"
+compatibility_date = "2025-08-04"
+compatibility_flags = ["nodejs_compat"]
+
+# Pages configuration
+pages_build_output_dir = ".open-next/assets"
+
+# Remove Workers-specific configuration since this is a Pages deployment
+# [env.production]
+# [[env.production.kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-namespace-id"
+# preview_id = "your-kv-preview-id"
+
+# [env.development]
+# [[env.development.kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-namespace-id"
+# preview_id = "your-kv-preview-id"

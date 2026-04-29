@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# OpenNext / Cloudflare Pages build output
+.open-next/
+final/.open-next/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+.env
+
+# sitemap
+/public/sitemap.xml
+/public/sitemap-*.xml
+/public/news.xml
+/public/robots.txt
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# logs
+logs
+*.log
+
+# package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# temporary files
+.tmp
+temp/
