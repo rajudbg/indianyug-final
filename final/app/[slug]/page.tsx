@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { getPost, getCategoryBySlug, getPostsByCategory, getRelatedPosts, getPosts } from '@/lib/wordpress'
-import { getFeaturedImage, getPostCategories, getAuthor, formatDate, decodeHtml, readingTime } from '@/lib/utils'
+import { getFeaturedImage, getPostCategories, getAuthor, formatDate, decodeHtml, readingTime, normalizeWordPressHtmlMediaUrls } from '@/lib/utils'
 import { ArticleContent } from '@/components/post/ArticleContent'
 import { ShareButtons } from '@/components/post/ShareButtons'
 import { PostCard } from '@/components/ui/PostCard'
@@ -77,7 +77,8 @@ async function PostPage({ slug }: { slug: string }) {
   const categories = getPostCategories(post)
   const author = getAuthor(post)
   const title = decodeHtml(post.title.rendered)
-  const mins = readingTime(post.content.rendered)
+  const normalizedContent = normalizeWordPressHtmlMediaUrls(post.content.rendered)
+  const mins = readingTime(normalizedContent)
   const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
   const relatedPosts = await getRelatedPosts(post, 3)
@@ -160,7 +161,7 @@ async function PostPage({ slug }: { slug: string }) {
         )}
 
         {/* ── Article body ────────────────────────────── */}
-        <ArticleContent content={post.content.rendered} adSlot={adSlot} adsenseClient={adsenseClient} />
+        <ArticleContent content={normalizedContent} adSlot={adSlot} adsenseClient={adsenseClient} />
 
         {/* ── Tags + share ────────────────────────────── */}
         <footer className="mt-12 pt-8 border-t border-[#d2d2d7] dark:border-[#424245]">

@@ -1,5 +1,16 @@
 import type { WPPost } from '@/types/wordpress'
 
+const CMS_UPLOADS_BASE = 'https://cms.indianyug.com/wp-content/uploads/'
+
+export function normalizeCmsMediaUrl(url: string | null | undefined): string | null {
+  if (!url) return null
+  return url.replace(/https?:\/\/(?:www\.)?indianyug\.com\/wp-content\/uploads\//gi, CMS_UPLOADS_BASE)
+}
+
+export function normalizeWordPressHtmlMediaUrls(html: string): string {
+  return html.replace(/https?:\/\/(?:www\.)?indianyug\.com\/wp-content\/uploads\//gi, CMS_UPLOADS_BASE)
+}
+
 export function decodeHtml(html: string): string {
   return html
     .replace(/&amp;/g, '&')
@@ -28,13 +39,14 @@ export function readingTime(content: string): number {
 
 export function getFeaturedImage(post: WPPost): string | null {
   const media = post._embedded?.['wp:featuredmedia']?.[0]
-  return (
+  const image = (
     media?.media_details?.sizes?.large?.source_url ??
     media?.media_details?.sizes?.medium_large?.source_url ??
     media?.media_details?.sizes?.medium?.source_url ??
     media?.source_url ??
     null
   )
+  return normalizeCmsMediaUrl(image)
 }
 
 export function getPostCategories(post: WPPost) {
