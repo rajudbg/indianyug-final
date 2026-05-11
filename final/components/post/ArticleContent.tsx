@@ -75,7 +75,7 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
       !p.closest('figure')
     )
 
-    const maxAds = 3
+    const maxAds = 5
     const interval = 4
     let adsInserted = 0
 
@@ -87,25 +87,20 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
       label.textContent = 'Advertisement'
       wrapper.appendChild(label)
 
+      let ins: HTMLElement | null = null
+
       if (client && adSlot) {
-        const ins = document.createElement('ins')
-        ins.className = 'adsbygoogle'
-        ins.style.cssText = 'display:block;text-align:center;'
-        ins.setAttribute('data-ad-layout', 'in-article')
-        ins.setAttribute('data-ad-format', 'fluid')
-        ins.setAttribute('data-ad-client', client)
-        ins.setAttribute('data-ad-slot', adSlot)
-        wrapper.appendChild(ins)
-        try { ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}) } catch { /* noop */ }
-        const mo = new MutationObserver(() => {
-          if (ins.getAttribute('data-ad-status') === 'unfilled') {
-            wrapper.style.display = 'none'
-            mo.disconnect()
-          }
-        })
-        mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] })
+        const adIns = document.createElement('ins')
+        adIns.className = 'adsbygoogle'
+        adIns.style.cssText = 'display:block;text-align:center;'
+        adIns.setAttribute('data-ad-layout', 'in-article')
+        adIns.setAttribute('data-ad-format', 'fluid')
+        adIns.setAttribute('data-ad-client', client)
+        adIns.setAttribute('data-ad-slot', adSlot)
+        wrapper.appendChild(adIns)
+        ins = adIns
       }
-      return wrapper
+      return { wrapper, ins }
     }
 
     paragraphs.forEach((p, i) => {
@@ -118,7 +113,35 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
         anchor = anchor.parentElement
       }
 
-      anchor.insertAdjacentElement('afterend', makeWrapper())
+      const { wrapper, ins } = makeWrapper()
+      anchor.insertAdjacentElement('afterend', wrapper)
+
+      if (ins) {
+        const mo = new MutationObserver(() => {
+          const status = ins.getAttribute('data-ad-status')
+          if (status === 'unfilled') {
+            wrapper.style.display = 'none'
+            mo.disconnect()
+          }
+          if (status === 'filled') {
+            mo.disconnect()
+          }
+        })
+        mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] })
+
+        window.setTimeout(() => {
+          if (!ins.getAttribute('data-ad-status')) {
+            wrapper.style.display = 'none'
+            mo.disconnect()
+          }
+        }, 8000)
+
+        try { ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}) } catch {
+          wrapper.style.display = 'none'
+          mo.disconnect()
+        }
+      }
+
       adsInserted++
     })
   }, [content, adSlot, adsenseClient])
