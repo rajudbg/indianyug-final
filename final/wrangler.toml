@@ -13,3 +13,10 @@ service = "indianyug-final"
 
 [observability]
 enabled = true
+
+[vars]
+WORDPRESS_API_URL = "https://cms.indianyug.com/wp-json/wp/v2"
+NEXT_PUBLIC_SITE_URL = "https://indianyug.com"
+NEXT_PUBLIC_GA_ID = "G-SY4CKYK24W"
+NEXT_PUBLIC_ADSENSE_CLIENT = "ca-pub-9432969048505333"
+NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE = "5576831162"
