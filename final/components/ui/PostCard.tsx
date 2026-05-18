@@ -15,17 +15,17 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
   const primaryCat = categories[0]
   const title = decodeHtml(post.title.rendered)
 
-  // Apple Newsroom hero - contained image box with rounded corners, title below on dark bg
+  // Apple Newsroom hero - same width as other cards
   if (variant === 'hero') {
     return (
       <Link href={`/${post.slug}`} className="group block w-full">
         <article className="flex flex-col items-center w-full">
           <div className="w-full max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Single rounded card container */}
+            {/* Card: rounded on all screens */}
             <div className="rounded-2xl overflow-hidden bg-white dark:bg-[#000000]">
-              {/* Image area — animates first */}
+              {/* Image area */}
               <AnimatedHeroImage>
-                <div className="relative w-full aspect-[16/9] bg-[#e8e8ed] dark:bg-[#121212]">
+                <div className="relative w-full aspect-[16/9] bg-[#e8e8ed] dark:bg-[#121212] overflow-hidden">
                   {image ? (
                     <Image
                       src={image}
@@ -40,9 +40,9 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                   )}
                 </div>
               </AnimatedHeroImage>
-              {/* Title area — animates after image */}
+              {/* Title area */}
               <AnimatedHeroText>
-                <div className="w-full px-8 py-8 md:py-10 bg-white dark:bg-[#000000]">
+                <div className="w-full px-4 sm:px-8 py-8 md:py-10 bg-white dark:bg-[#000000]">
                   {primaryCat && (
                     <span className="text-[11px] md:text-[12px] font-semibold text-[#86868b] uppercase tracking-wider mb-3 block">
                       {primaryCat.name}

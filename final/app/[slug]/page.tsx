@@ -148,14 +148,14 @@ async function PostPage({ slug }: { slug: string }) {
 
         {/* ── Featured image ──────────────────────────── */}
         {image && (
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-10 bg-[#f5f5f7] dark:bg-[#1d1d1f] article-image-fade">
+          <div className="relative aspect-[16/9] -mx-4 w-[calc(100%+2rem)] sm:mx-0 sm:w-full sm:rounded-2xl overflow-hidden mb-10 bg-[#f5f5f7] dark:bg-[#1d1d1f] article-image-fade">
             <Image
               src={image}
               alt={title}
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 780px) 100vw, 780px"
+              sizes="(max-width: 768px) 100vw, 780px"
             />
           </div>
         )}

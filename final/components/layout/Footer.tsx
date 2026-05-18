@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, Phone, MapPin, Heart } from 'lucide-react'
 import type { WPCategory } from '@/types/wordpress'
 import { NewsletterForm } from '@/components/ui/NewsletterForm'
@@ -66,7 +67,7 @@ const SOCIAL_LINKS = [
 const BRANDS = [
   { href: 'https://bolderbrain.com', label: 'Bolderbrain' },
   { href: 'https://shapeambition.com', label: 'Shapeambition' },
-  { href: 'https://conceptual.in', label: 'Conceptual' },
+  { href: 'https://www.conceptial-india.com', label: 'Conceptial' },
 ]
 
 export function Footer({ categories }: FooterProps) {
@@ -83,8 +84,9 @@ export function Footer({ categories }: FooterProps) {
 
           {/* About */}
           <div>
-            <Link href="/" className="text-2xl font-bold text-gradient mb-3 inline-block">
-              IndianYug
+            <Link href="/" className="inline-block mb-3">
+              <Image src="/logo.png" alt="IndianYug" width={180} height={50} className="h-10 w-auto block dark:hidden" />
+            <Image src="/logo-dark.png" alt="IndianYug" width={180} height={50} className="h-10 w-auto hidden dark:block" />
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
               Bridging Worlds, Sharing Stories. Explore a world of diverse perspectives

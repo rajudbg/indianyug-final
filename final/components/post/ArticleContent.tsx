@@ -92,7 +92,7 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
       if (client && adSlot) {
         const adIns = document.createElement('ins')
         adIns.className = 'adsbygoogle'
-        adIns.style.cssText = 'display:block;text-align:center;'
+        adIns.style.cssText = 'display:block;text-align:center;min-width:280px;'
         adIns.setAttribute('data-ad-layout', 'in-article')
         adIns.setAttribute('data-ad-format', 'fluid')
         adIns.setAttribute('data-ad-client', client)
@@ -136,7 +136,15 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
           }
         }, 8000)
 
-        try { ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}) } catch {
+        try {
+          // rAF ensures the ins element has a computed width before push()
+          requestAnimationFrame(() => {
+            try { ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}) } catch {
+              wrapper.style.display = 'none'
+              mo.disconnect()
+            }
+          })
+        } catch {
           wrapper.style.display = 'none'
           mo.disconnect()
         }
@@ -193,7 +201,7 @@ export function ArticleContent({ content, adSlot, adsenseClient }: ArticleConten
       <ReadingProgress />
       <div
         ref={ref}
-        className="prose prose-lg dark:prose-invert max-w-none"
+        className="prose dark:prose-invert max-w-none"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </>

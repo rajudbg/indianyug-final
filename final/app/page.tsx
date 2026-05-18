@@ -65,7 +65,7 @@ export default async function HomePage() {
 
       {/* ── Latest News Section ──────────────────────────── */}
       {subHero.length > 0 && (
-        <section className="max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <section className="max-w-[1024px] mx-auto px-5 sm:px-6 lg:px-8 pt-16 pb-12">
           <AnimatedGrid containerClassName="">
             <h2 className="text-[22px] sm:text-[26px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] leading-[1.1] tracking-tight mb-8">
               Latest News
@@ -112,7 +112,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Per-category post sections (Apple Newsroom Style) ─────────────────── */}
-      <div className="max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-[1024px] mx-auto px-5 sm:px-6 lg:px-8 py-20">
         <div className="flex flex-col space-y-20 pb-12">
           {sections.map(({ cat, posts }) => (
             <CategorySection key={cat.id} category={cat} posts={posts} />

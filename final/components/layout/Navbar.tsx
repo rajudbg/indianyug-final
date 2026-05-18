@@ -1,7 +1,8 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import type { WPCategory } from '@/types/wordpress'
 
@@ -9,15 +10,10 @@ interface NavbarProps {
   categories: WPCategory[]
 }
 
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-]
+const MENU_CATS = ['Featured', 'News', 'History', 'Viral', 'Science', 'Analysis']
 
 export function Navbar({ categories }: NavbarProps) {
   const [open, setOpen] = useState(false)
-  const [catOpen, setCatOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -26,10 +22,9 @@ export function Navbar({ categories }: NavbarProps) {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  const topCats = [...categories]
-    .filter(c => c.slug !== 'featured')
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10)
+  const menuCategories = MENU_CATS
+    .map(name => categories.find(c => c.name.toLowerCase() === name.toLowerCase()))
+    .filter((c): c is WPCategory => c !== undefined)
 
   return (
     <header
@@ -41,53 +36,39 @@ export function Navbar({ categories }: NavbarProps) {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-bold text-gradient shrink-0"
+          className="shrink-0"
           onClick={() => setOpen(false)}
         >
-          IndianYug
+          <Image
+            src="/logo.png"
+            alt="IndianYug"
+            width={200}
+            height={50}
+            className="h-10 w-auto block dark:hidden"
+            priority
+          />
+          <Image
+            src="/logo-dark.png"
+            alt="IndianYug"
+            width={200}
+            height={50}
+            className="h-10 w-auto hidden dark:block"
+            priority
+          />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — categories only */}
         <div className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(l => (
+          {menuCategories.map(c => (
             <Link
-              key={l.href}
-              href={l.href}
+              key={c.id}
+              href={`/category/${c.slug}`}
               className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300
                          hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-150"
             >
-              {l.label}
+              {c.name}
             </Link>
           ))}
-
-          {/* Categories dropdown */}
-          <div className="relative" onMouseLeave={() => setCatOpen(false)}>
-            <button
-              onMouseEnter={() => setCatOpen(true)}
-              onClick={() => setCatOpen(v => !v)}
-              className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium
-                         text-gray-700 dark:text-gray-300
-                         hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-150"
-            >
-              Categories <ChevronDown size={14} className={`transition-transform ${catOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {catOpen && (
-              <div className="absolute top-full left-0 mt-1 w-56 glass rounded-2xl py-2 shadow-xl">
-                {topCats.map(c => (
-                  <Link
-                    key={c.id}
-                    href={`/category/${c.slug}`}
-                    onClick={() => setCatOpen(false)}
-                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300
-                               hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors"
-                  >
-                    {c.name}
-                    <span className="ml-1 text-xs text-gray-400">({c.count})</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Right controls */}
@@ -105,36 +86,20 @@ export function Navbar({ categories }: NavbarProps) {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — categories only */}
       {open && (
         <div className="md:hidden glass-nav border-t border-gray-200/40 dark:border-gray-700/40 py-3 px-4 space-y-1">
-          {NAV_LINKS.map(l => (
+          {menuCategories.map(c => (
             <Link
-              key={l.href}
-              href={l.href}
+              key={c.id}
+              href={`/category/${c.slug}`}
               onClick={() => setOpen(false)}
               className="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300
                          hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
-              {l.label}
+              {c.name}
             </Link>
           ))}
-          <div className="pt-1 pb-1">
-            <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
-              Categories
-            </p>
-            {topCats.map(c => (
-              <Link
-                key={c.id}
-                href={`/category/${c.slug}`}
-                onClick={() => setOpen(false)}
-                className="block px-4 py-2 rounded-xl text-sm text-gray-600 dark:text-gray-400
-                           hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </div>
         </div>
       )}
     </header>

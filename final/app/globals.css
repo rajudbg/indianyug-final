@@ -97,8 +97,633 @@
 .dark .prose code { background-color: rgb(31 41 55); color: rgb(229 231 235); }
 .dark .prose a { color: rgb(229 231 235); }
 .dark .prose strong { color: rgb(243 244 246); }
-.dark .prose blockquote { border-left-color: rgb(107 114 128); background-color: rgb(31 41 55 / 0.5); }
-.prose figure figcaption { @apply text-sm text-gray-500 dark:text-gray-400 text-center mt-2; }
+.prose h2, .prose h3, .prose p { padding-left: 8px; }
+.prose p { font-size: 1rem !important; line-height: 1.7 !important; }
+.prose li, .prose table { font-size: 1rem !important; }
+
+/* Apple Newsroom pull-quote — bold, centered with padding */
+.prose blockquote,
+.prose blockquote p {
+  border: none !important;
+  background: none !important;
+  padding: 3rem 2rem !important;
+  margin: 2.5rem 0 !important;
+  text-align: center !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 1.75rem !important;
+  line-height: 1.3 !important;
+  color: #1d1d1f !important;
+  text-indent: 0 !important;
+}
+.dark .prose blockquote,
+.dark .prose blockquote p {
+  color: #ffffff !important;
+}
+/* Hide leading quote character if present */
+.prose blockquote p::first-letter {
+  color: transparent;
+}
+@media (max-width: 768px) {
+  .prose blockquote,
+  .prose blockquote p {
+    font-size: 1.35rem !important;
+    padding: 2rem 1.5rem !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem !important;
+    padding: 1.5rem 0 !important;
+  }
+}
+.prose blockquote p {
+  margin: 0 !important;
+}
+.dark .prose blockquote {
+  color: #f5f5f7 !important;
+  background: none !important;
+}
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.05rem;
+    padding: 1.5rem 0;
+  }
+}
+.prose blockquote p {
+  margin: 0;
+}
+.dark .prose blockquote {
+  color: #f5f5f7;
+  background: none;
+}
+
+/* Apple Newsroom figcaption — small, all-caps, muted */
+.prose figure figcaption,
+.prose figcaption {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #86868b;
+  text-align: center;
+  margin-top: 0.6rem;
+  line-height: 1.5;
+}
+
 .prose table { @apply w-full border-collapse; }
 .prose th { @apply bg-gray-100 dark:bg-gray-800 font-semibold; }
 .prose td, .prose th { @apply border border-gray-200 dark:border-gray-700 px-4 py-2; }
@@ -285,11 +910,26 @@
 .prose figure {
   margin: 2rem 0;
 }
+
+/* Image-only figures: bleed edge-to-edge on mobile, subtle rounding */
+.prose figure:has(img):not(:has(iframe)):not(:has(.twitter-tweet)):not(:has(.instagram-media)):not(:has(.fb-post)):not(:has(.fb-video)) {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+@media (min-width: 640px) {
+  .prose figure:has(img):not(:has(iframe)):not(:has(.twitter-tweet)):not(:has(.instagram-media)):not(:has(.fb-post)):not(:has(.fb-video)) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .prose figure img {
-  border-radius: 1rem;
+  border-radius: 8px;
   width: 100%;
   height: auto;
+  display: block;
 }
+
 .prose figcaption {
   margin-top: 0.6rem;
   font-size: 13px;

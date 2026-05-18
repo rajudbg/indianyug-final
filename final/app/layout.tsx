@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   keywords: ['India', 'culture', 'news', 'lifestyle', 'technology', 'business', 'IndianYug'],
   metadataBase: new URL(siteUrl),
   alternates: { canonical: siteUrl },
+  icons: {
+    icon: '/logo.ico',
+    apple: '/logo.png',
+  },
   openGraph: {
     type: 'website',
     siteName: 'IndianYug',
