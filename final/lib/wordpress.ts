@@ -31,6 +31,8 @@ export async function getPosts(opts: {
       page: opts.page ?? 1,
       per_page: opts.perPage ?? 12,
     }
+    params.orderby = 'date'
+    params.order = 'desc'
     if (opts.embed) params._embed = true
     if (opts.categories?.length) params.categories = opts.categories.join(',')
     if (opts.exclude?.length) params.exclude = opts.exclude.join(',')
