@@ -6,15 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3000",
     "lint": "next lint",
-    "type-check": "tsc --noEmit",
-    "cf:build": "opennextjs-cloudflare build",
-    "cf:deploy": "opennextjs-cloudflare deploy",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "pages:build": "opennextjs-cloudflare build"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "clsx": "2.1.1",
@@ -28,7 +22,6 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "1.19.4",
     "@tailwindcss/typography": "0.5.15",
     "@types/node": "22.15.0",
     "@types/react": "18.3.20",
@@ -38,8 +31,7 @@
     "eslint-config-next": "15.5.15",
     "postcss": "8.5.3",
     "tailwindcss": "3.4.17",
-    "typescript": "5.8.3",
-    "wrangler": "4.86.0"
+    "typescript": "5.8.3"
   },
   "engines": {
     "node": ">=22.0.0"
