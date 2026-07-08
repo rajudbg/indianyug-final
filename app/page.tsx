@@ -57,8 +57,13 @@ export default async function HomePage() {
       {/* ── Hero Section (Apple Newsroom Style) ──────────────────────────── */}
       {hero && (
         <AnimatedHero>
-          <section className="w-full bg-[#f5f5f7] dark:bg-[#121212] pt-10 md:pt-14 pb-10 md:pb-14">
-            <PostCard post={hero} variant="hero" />
+          <section className="w-full bg-[#ffffff] dark:bg-[#000000] pt-10 md:pt-14 pb-10 md:pb-14">
+            <div className="max-w-[1024px] mx-auto px-5 sm:px-6 lg:px-8">
+              <h2 className="text-[22px] sm:text-[26px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] leading-[1.1] tracking-tight mb-8">
+                Latest News
+              </h2>
+              <PostCard post={hero} variant="hero-wide" />
+            </div>
           </section>
         </AnimatedHero>
       )}
@@ -114,8 +119,8 @@ export default async function HomePage() {
       {/* ── Per-category post sections (Apple Newsroom Style) ─────────────────── */}
       <div className="max-w-[1024px] mx-auto px-5 sm:px-6 lg:px-8 py-20">
         <div className="flex flex-col space-y-20 pb-12">
-          {sections.map(({ cat, posts }) => (
-            <CategorySection key={cat.id} category={cat} posts={posts} />
+          {sections.map(({ cat, posts }, idx) => (
+            <CategorySection key={cat.id} category={cat} posts={posts} index={idx} />
           ))}
         </div>
       </div>
@@ -123,8 +128,13 @@ export default async function HomePage() {
   )
 }
 
-function CategorySection({ category, posts }: { category: WPCategory; posts: WPPost[] }) {
+function CategorySection({ category, posts, index }: { category: WPCategory; posts: WPPost[]; index: number }) {
   if (posts.length === 0) return null
+
+  // Layout A: 1 hero-wide + 2 newsroom-card (standard latest news style)
+  // Layout B: 3 newsroom-card in a row
+  // Layout C: 1 alternate card (side-by-side) + 3 minimal cards
+  const layoutStyle = index % 3
 
   return (
     <AnimatedSection>
@@ -141,21 +151,53 @@ function CategorySection({ category, posts }: { category: WPCategory; posts: WPP
         </Link>
       </div>
 
-      {/* Apple Newsroom: first card is wide horizontal, rest in 2-col grid */}
       <AnimatedGrid containerClassName="">
-        {posts[0] && (
-          <AnimatedGridItem>
-            <PostCard post={posts[0]} variant="hero-wide" />
-          </AnimatedGridItem>
+        {layoutStyle === 0 && (
+          <>
+            {posts[0] && (
+              <AnimatedGridItem>
+                <PostCard post={posts[0]} variant="hero-wide" />
+              </AnimatedGridItem>
+            )}
+            {posts.slice(1, 3).length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                {posts.slice(1, 3).map((post) => (
+                  <AnimatedGridItem key={post.id}>
+                    <PostCard post={post} variant="newsroom-card" />
+                  </AnimatedGridItem>
+                ))}
+              </div>
+            )}
+          </>
         )}
-        {posts.slice(1, 5).length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-            {posts.slice(1, 5).map((post) => (
+
+        {layoutStyle === 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {posts.slice(0, 3).map((post) => (
               <AnimatedGridItem key={post.id}>
                 <PostCard post={post} variant="newsroom-card" />
               </AnimatedGridItem>
             ))}
           </div>
+        )}
+
+        {layoutStyle === 2 && (
+          <>
+            {posts[0] && (
+              <AnimatedGridItem>
+                <PostCard post={posts[0]} variant="alternate" />
+              </AnimatedGridItem>
+            )}
+            {posts.slice(1, 4).length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 border-t border-[#d2d2d7] dark:border-[#424245] pt-6">
+                {posts.slice(1, 4).map((post) => (
+                  <AnimatedGridItem key={post.id}>
+                    <PostCard post={post} variant="minimal" />
+                  </AnimatedGridItem>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </AnimatedGrid>
 

@@ -70,32 +70,32 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
   // Apple Newsroom "Latest News" large horizontal card - image left, text right
   if (variant === 'hero-wide') {
     return (
-      <Link href={`/${post.slug}`} className="group block w-full rounded-2xl overflow-hidden bg-white dark:bg-[#1d1d1f] shadow-[0_2px_12px_rgba(0,0,0,0.10)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.18)] transition-shadow duration-300">
+      <Link href={`/${post.slug}`} className="group block w-full rounded-2xl md:rounded-[24px] overflow-hidden bg-[#f5f5f7] dark:bg-[#1d1d1f] hover:bg-[#e8e8ed] dark:hover:bg-[#2d2d2f] transition-all duration-300">
         <article className="flex flex-col md:flex-row h-full">
-          <div className="relative w-full md:w-[55%] aspect-[16/9] md:aspect-auto md:min-h-[320px] bg-[#f5f5f7] dark:bg-[#1d1d1f] overflow-hidden shrink-0">
+          <div className="relative w-full md:w-[58%] aspect-[16/9] md:aspect-auto md:min-h-[420px] bg-[#e8e8ed] dark:bg-[#333336] overflow-hidden shrink-0">
             {image ? (
               <Image
                 src={image}
                 alt={title}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 55vw"
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 58vw"
                 priority
               />
             ) : (
               <div className="absolute inset-0 bg-gray-200 dark:bg-[#333336] shimmer" />
             )}
           </div>
-          <div className="flex flex-col justify-center w-full md:w-[45%] p-8 md:p-10 lg:p-12">
+          <div className="flex flex-col justify-center w-full md:w-[42%] p-8 md:p-12">
             {primaryCat && (
-              <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider mb-3 block">
+              <span className="text-[12px] font-semibold text-[#86868b] uppercase tracking-wider mb-3 block">
                 {primaryCat.name}
               </span>
             )}
-            <h3 className="text-[22px] md:text-[26px] lg:text-[30px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] leading-[1.15] tracking-tight group-hover:text-[#6e6e73] transition-colors">
+            <h3 className="text-[24px] md:text-[28px] lg:text-[34px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] leading-[1.15] tracking-tight group-hover:text-[#000000] dark:group-hover:text-white transition-colors">
               {title}
             </h3>
-            <time className="mt-4 text-[13px] text-[#86868b] font-medium">
+            <time className="mt-4 text-[14px] text-[#86868b] font-medium">
               {new Date(post.date).toLocaleDateString('en-US', {
                 year: 'numeric', month: 'long', day: 'numeric'
               })}

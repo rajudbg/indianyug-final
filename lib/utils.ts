@@ -10,8 +10,11 @@ export function normalizeCmsMediaUrl(url: string | null | undefined): string | n
 export function normalizeWordPressHtmlMediaUrls(html: string): string {
   let normalized = html.replace(/https?:\/\/(?:www\.)?indianyug\.com\/wp-content\/uploads\//gi, CMS_UPLOADS_BASE)
   
-  // Rewrite internal CMS article links back to relative paths (e.g. href="https://cms.indianyug.com/some-post/" -> href="/some-post/")
-  normalized = normalized.replace(/href=["']https?:\/\/cms\.indianyug\.com\/(?!wp-content\/)([^"']*)["']/gi, 'href="/$1"')
+  // Rewrite internal article links (both cms. and main domain) back to relative paths
+  normalized = normalized.replace(/href=["']https?:\/\/(?:cms\.|www\.)?indianyug\.com\/(?!wp-content\/)([^"']*)["']/gi, 'href="/$1"')
+  
+  // Remove anchor tags that point directly to CMS media uploads (e.g. clicking an image)
+  normalized = normalized.replace(/<a[^>]*href=["']https?:\/\/(?:cms\.|www\.)?indianyug\.com\/wp-content\/uploads\/[^"']*["'][^>]*>(.*?)<\/a>/gi, '$1')
   
   return normalized
 }
