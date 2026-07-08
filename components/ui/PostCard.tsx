@@ -36,7 +36,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                       priority
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-[#d2d2d7] dark:bg-[#333336]" />
+                    <div className="absolute inset-0 bg-[#d2d2d7] dark:bg-[#333336] shimmer" />
                   )}
                 </div>
               </AnimatedHeroImage>
@@ -83,7 +83,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 priority
               />
             ) : (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-[#333336]" />
+              <div className="absolute inset-0 bg-gray-200 dark:bg-[#333336] shimmer" />
             )}
           </div>
           <div className="flex flex-col justify-center w-full md:w-[45%] p-8 md:p-10 lg:p-12">
@@ -121,7 +121,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 sizes="(max-width: 1024px) 100vw, 66vw"
               />
             ) : (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800" />
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 shimmer" />
             )}
           </div>
           <div className="flex flex-col flex-1 p-6 md:p-8">
@@ -148,7 +148,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
             {image ? (
               <Image src={image} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             ) : (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800" />
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 shimmer" />
             )}
           </div>
           <div className="flex flex-col justify-center w-full md:w-1/2 p-8 md:p-12 lg:p-16">
@@ -243,7 +243,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             ) : (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800" />
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 shimmer" />
             )}
           </div>
           <div className="flex flex-col flex-1 px-4 py-5">
@@ -252,7 +252,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 {primaryCat.name}
               </span>
             )}
-            <h3 className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] text-[clamp(18px,2vw,22px)] leading-[1.2] tracking-tight line-clamp-3 group-hover:text-[#6e6e73] transition-colors">
+            <h3 className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] text-[19px] md:text-[21px] leading-[1.2] tracking-tight line-clamp-3 group-hover:text-[#6e6e73] transition-colors">
               {title}
             </h3>
           </div>
@@ -315,7 +315,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             ) : (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800" />
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 shimmer" />
             )}
           </div>
           <div className="flex flex-col flex-1 px-4 py-6">
@@ -324,7 +324,7 @@ export function PostCard({ post, variant = 'default' }: PostCardProps) {
                 {primaryCat.name}
               </span>
             )}
-            <h3 className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] text-[clamp(18px,2vw,22px)] leading-[1.2] tracking-tight line-clamp-3 group-hover:text-[#6e6e73] transition-colors">
+            <h3 className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] text-[19px] md:text-[21px] leading-[1.2] tracking-tight line-clamp-3 group-hover:text-[#6e6e73] transition-colors">
               {title}
             </h3>
             <time className="mt-4 text-[13px] text-[#86868b] font-medium">

@@ -2,136 +2,80 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer-simple'
-import { FloatingElements } from '@/components/ui/floating-elements'
-import { RippleEffect } from '@/components/ui/ripple-effect'
-import { GoogleAnalytics } from '@/components/google-analytics'
-import { AdSenseScript } from '@/components/ui/adsense-script'
-import { PerformanceOptimizer } from '@/components/ui/performance-optimizer'
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { CloudflareAnalytics } from '@/components/ui/cloudflare-analytics'
-import { WebVitals } from '@/components/ui/web-vitals'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { getCategories } from '@/lib/wordpress'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial']
-})
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://indianyug.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'IndianYug - Your Digital Destination',
-    template: '%s | IndianYug'
+    default: 'IndianYug – Bridging Tradition with Innovation',
+    template: '%s | IndianYug',
   },
-  description: 'Discover the latest trends, insights, and stories that matter. Your go-to source for digital content and Indian culture.',
+  description: 'Bridging Worlds, Sharing Stories. Explore a world of diverse perspectives and global insights at IndianYug.',
+  keywords: ['India', 'culture', 'news', 'lifestyle', 'technology', 'business', 'IndianYug'],
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: siteUrl },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
-  },
-  keywords: ['IndianYug', 'blog', 'Indian culture', 'technology', 'lifestyle', 'news'],
-  authors: [{ name: 'IndianYug Team' }],
-  creator: 'IndianYug',
-  publisher: 'IndianYug',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://indianyug.com'),
-  alternates: {
-    canonical: '/',
+    icon: '/logo.ico',
+    apple: '/logo.png',
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: '/',
-    title: 'IndianYug - Your Digital Destination',
-    description: 'Discover the latest trends, insights, and stories that matter.',
     siteName: 'IndianYug',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'IndianYug',
-      },
-    ],
+    locale: 'en_IN',
+    url: siteUrl,
+    images: [{ url: `${siteUrl}/og-default.jpg`, width: 1200, height: 630, alt: 'IndianYug' }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'IndianYug - Your Digital Destination',
-    description: 'Discover the latest trends, insights, and stories that matter.',
-    images: ['/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
-  other: {
-    'X-UA-Compatible': 'IE=edge',
-    'X-Content-Type-Options': 'nosniff',
-    'X-XSS-Protection': '1; mode=block',
-    'Referrer-Policy': 'origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-  },
+  twitter: { card: 'summary_large_image', site: '@indianyug' },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const gaId = process.env.NEXT_PUBLIC_GA_ID
+const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const categories = await getCategories()
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
-        {/* Critical resource hints for Cloudflare Pages */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="dns-prefetch" href="//cms.indianyug.com" />
-        <link rel="dns-prefetch" href="//secure.gravatar.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
-        <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
-        <link rel="preload" href="/og-image.jpg" as="image" type="image/jpeg" />
+        <link rel="preconnect" href="https://cms.indianyug.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <PerformanceOptimizer>
-            <FloatingElements />
-            <RippleEffect />
-            <div className="min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-1">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </PerformanceOptimizer>
+      <body className={`${inter.className} min-h-screen flex flex-col bg-white dark:bg-gray-950`}>
+        {adsenseClient && (
+          <Script
+            id="adsense-init"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+            strategy="lazyOnload"
+            crossOrigin="anonymous"
+          />
+        )}
+        <ThemeProvider>
+          <Navbar categories={categories} />
+          <main className="flex-1 pt-16">
+            {children}
+          </main>
+          <Footer categories={categories} />
         </ThemeProvider>
-        <AdSenseScript />
-        <GoogleAnalytics />
-        <CloudflareAnalytics />
-        <WebVitals />
-        <SpeedInsights />
+
+        {/* Google Analytics — loaded after interaction for better Core Web Vitals */}
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${gaId}',{page_path:window.location.pathname})`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )

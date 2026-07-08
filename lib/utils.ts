@@ -8,7 +8,12 @@ export function normalizeCmsMediaUrl(url: string | null | undefined): string | n
 }
 
 export function normalizeWordPressHtmlMediaUrls(html: string): string {
-  return html.replace(/https?:\/\/(?:www\.)?indianyug\.com\/wp-content\/uploads\//gi, CMS_UPLOADS_BASE)
+  let normalized = html.replace(/https?:\/\/(?:www\.)?indianyug\.com\/wp-content\/uploads\//gi, CMS_UPLOADS_BASE)
+  
+  // Rewrite internal CMS article links back to relative paths (e.g. href="https://cms.indianyug.com/some-post/" -> href="/some-post/")
+  normalized = normalized.replace(/href=["']https?:\/\/cms\.indianyug\.com\/(?!wp-content\/)([^"']*)["']/gi, 'href="/$1"')
+  
+  return normalized
 }
 
 export function decodeHtml(html: string): string {
